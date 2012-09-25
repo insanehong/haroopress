@@ -1,11 +1,10 @@
-#!/usr/bin/env node
-
 var fs = require('fs'),
     rl = require('readline'),
     path = require('path'),
     conf = require('../_config'),
     colors = require('colors');
 
+var callback;
 var i = rl.createInterface(process.stdin, process.stdout, null);
 var metas = [
     { key: 'defaultTitle', question: 'Insert your site title (*)', example: 'My Haoopress Blog' },
@@ -57,8 +56,8 @@ function save() {
         }
 
         i.close();
-        process.stdin.destroy();
-        
+        callback();
+        // process.stdin.destroy();
     });
 }
 
@@ -85,4 +84,11 @@ function queue(idx) {
     });
 }
 
-queue();
+// queue();
+
+module.exports = {
+    start: function(cb) {
+        queue();
+        callback = cb;
+    }
+}

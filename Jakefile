@@ -1,6 +1,5 @@
 desc('Haroopress Run Tasks');
-task('default', [ /*'update', 'clear', 'setup', */'gh-pages', 'initialize' ], function() {
-	complete();
+task('default', [ /*'update', 'clear', 'setup', */ 'gh-pages', 'initialize', 'guide' ], function() {
 }, { async: true });
 
 desc('Update submodule');
@@ -11,15 +10,6 @@ task('update', function() {
 	}, { printStdout: true });
 }, { async: true });
 
-desc('Initialize haroopress data');
-task('initialize', function() {
-	process.chdir('..');
-	var cmd = [ 'node ./bin/init.js' ];
-	jake.exec(cmd, function() {
-		complete();
-	}, { printStdout: true });
-});
-
 desc('Configurate haroopress');
 task('setup', function() {
 	require('./bin/setup').start(complete);
@@ -28,6 +18,11 @@ task('setup', function() {
 desc('Setup repository for publishing');
 task('gh-pages', function() {
 	require('./bin/gh-pages').start(complete);
+}, { async: true });
+
+desc('Initialize haroopress data');
+task('initialize', function() {
+	require('./bin/init').start(complete);
 }, { async: true });
 
 desc('Clear public & Publishing directories');
@@ -45,7 +40,7 @@ task('guide', function () {
 	jake.exec(cmd, function() {
 		complete();
 	}, { printStdout: true });
-});
+}, { async: true });
 
 desc('Generate to static page');
 task('gen', function() {

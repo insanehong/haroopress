@@ -43,6 +43,8 @@ module.exports = {
         cb = callback;
         if(!fs.existsSync(conf.sourceDir)) {
             init();
+        } else {
+            cb();
         }
     }
 }

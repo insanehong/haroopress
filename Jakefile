@@ -1,5 +1,5 @@
 desc('Haroopress Run Tasks');
-task('default', [ /*'update', 'clear', 'setup', */ 'gh-pages', 'initialize', 'guide' ], function() {
+task('default', [ /* */'update', 'clear', 'setup', 'gh-pages', 'initialize', 'guide' ], function() {
 }, { async: true });
 
 desc('Update submodule');
@@ -33,10 +33,10 @@ task('clear', function() {
 	}, { printStdout: true });
 }, { async: true });
 
-
 desc('Display Quick Guide');
 task('guide', function () {
-	var cmd = [ 'cat ./lib/haroopress/QUICK.markdown' ];
+	var cmd = [ 'clear', 'cat ./lib/haroopress/QUICK.markdown' ];
+	process.chdir(__dirname);
 	jake.exec(cmd, function() {
 		complete();
 	}, { printStdout: true });

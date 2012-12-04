@@ -12,7 +12,7 @@ function printConfig() {
     return 'module.exports = '+ res;
 }
 
-function fechVersion() {
+function overrideVersion() {
     var str = printConfig(),
         pattern = new RegExp('"'+ path.resolve(__dirname, '..'), 'g');
 
@@ -31,11 +31,11 @@ function updateCheck() {
     } else {
        config.meta.version = lastest;
       
-       fechVersion();
+       overrideVersion();
        
        console.log('==================================================================================');
        console.log('haroo> The Haroopress was completed successfully.'.yellow);
-       console.log('haroo> Fech '+version.red+' => '+ lastest.yellow);
+       console.log('haroo> Update : '+version.red+' => '+ lastest.yellow);
     }
 }
 

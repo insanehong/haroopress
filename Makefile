@@ -20,6 +20,7 @@ update:
 	@echo "= update & initialize git submodules"
 	@echo "========================================"
 	git pull origin master
+        ./bin/update.js
 
 init-data: 
 	@echo "========================================"
